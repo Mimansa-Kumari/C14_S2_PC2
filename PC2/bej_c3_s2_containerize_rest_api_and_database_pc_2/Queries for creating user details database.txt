@@ -1,0 +1,44 @@
+															
+CREATING A MySQL DATABASE TO STORE USER DETAILS USING DOCKER
+******************************************************************
+
+STEP-1 : Create Docker Network
+		=> C:\Users\miman>docker network create mySqlNetwork
+		   81a809865067ed7227cfc1e584d76878fa0d6392bcd670fac03052146da0c32f
+														   
+STEP-2 :  Pull MySQL Image with latest Tag
+		=> C:\Users\miman>docker pull mysql
+		
+STEP-2 : Run the image to create the container
+		=> C:\Users\miman>docker run -it --network mySqlNetwork --name 		  
+		   UserByMySQL -e MYSQL_ROOT_PASSWORD=Mimansa@123 -p 3306:3306 -d mysql
+		   d55dfcbe4f29dd5d99593fc76d1e8ebc3cf1a1be64d67967ce3bc46de63b492e
+
+STEP-3 : Execute the container to get the input to open mysql shell 
+		=> C:\Users\miman>docker exec -it UserByMySQL bash
+
+STEP-4 : Type below to open mongo shell	
+		=> bash-4.4# mysql -u root -p
+		   Enter password:
+
+STEP-5 : Write Query to show the existing databases of Mongo
+		=> mysql> show databases;
+
+STEP-6 : Write Query to create new database
+		=> mysql> create database userDb;
+		   Query OK, 1 row affected (0.01 sec)
+
+STEP-7 :  Write Query to create a table within userDb Database
+		=> mysql> create table users(userName varchar (100),address varchar(100),phoneNumber long, email varchar(50));
+		   Query OK, 0 rows affected (0.03 sec)	
+
+STEP-8 : Write Query to insert values to the table
+		=> mysql> insert into users values("Priyanshu","Delhi",8409978804,"priyanshu@gmail.com");
+		   Query OK, 1 row affected (0.01 sec)
+		   
+STEP-9 : Write Query to show the data of table
+		=> mysql> select * from users;
+			+-----------+---------+-------------+---------------------+
+			| userName  | address | phoneNumber | email               |
+			+-----------+---------+-------------+---------------------+	
+			   
